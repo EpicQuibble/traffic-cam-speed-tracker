@@ -11,7 +11,7 @@ from detection import (VehicleTracker, detect_vehicles_yolo,
                        detect_vehicles_background_subtraction, match_vehicle_to_tracker)
 from ui import draw_simple_ui, draw_debug_zones, draw_debug_grid
 
-# --- Global Tracking Data ---
+# global vehicle trackers
 tracked_vehicles = {}
 next_vehicle_id = 0
 vehicle_id_lock = threading.Lock()
@@ -19,7 +19,7 @@ vehicle_id_lock = threading.Lock()
 def main():
     global next_vehicle_id, tracked_vehicles
 
-    # --- Initialize Detector ---
+    # init detection method
     yolo_model = None
     bg_subtractor = None
     USE_YOLO = False
@@ -44,7 +44,7 @@ def main():
     
     PROCESS_EVERY_N_FRAMES = config.PROCESS_EVERY_N_FRAMES_YOLO if USE_YOLO else config.PROCESS_EVERY_N_FRAMES_BGSUB
 
-    # --- Start Stream Reader ---
+    # start the video stream reader thread
     reader_thread = threading.Thread(target=stream_reader_thread)
     reader_thread.daemon = True 
     reader_thread.start()
@@ -62,7 +62,7 @@ def main():
         cv2.destroyAllWindows()
         return
 
-    # --- Get first frame to scale zones ---
+    # Get frame dimensions from first frame
     try:
         first_frame = frame_queue.get(timeout=5.0)
         frame_height, frame_width, _ = first_frame.shape
@@ -93,7 +93,7 @@ def main():
             frame_count += 1
             current_time = time.time()
             
-            # --- Detection (runs every N frames) ---
+            # DETECTION (runs every N frames)
             if frame_count % PROCESS_EVERY_N_FRAMES == 0:
                 if USE_YOLO:
                     detections = detect_vehicles_yolo(yolo_model, frame)
@@ -171,7 +171,7 @@ def main():
             stop_event.set()
             break
     
-    # --- Cleanup ---
+    # cleanup
     print("Shutting down...")
     reader_thread.join(timeout=5)
     cv2.destroyAllWindows()

@@ -63,7 +63,7 @@ class VehicleTracker:
                 self.speed_mph = feet_per_second * 0.681818
                 
             else:
-                self.speed_mph = 0.0 # Time was too short --> kinda dumb because if a car goes super fast AKA racing then it won't register but oh well problem for later 
+                self.speed_mph = 0.0 # kinda dumb because if a car goes super fast AKA racing then it won't register but oh well problem for later 
     
     def is_stale(self, current_time, timeout=1.5):
         """Check if we haven't seen this vehicle in a while."""
@@ -74,6 +74,7 @@ def detect_vehicles_yolo(yolo_model, frame):
     Uses YOLOv8 to detect vehicles.
     Returns a list of bounding boxes in (x, y, w, h) format.
     """
+
     detections = []
     # verbose=False silences the console spam from YOLO
     results = yolo_model(frame, classes=config.VEHICLE_CLASSES, verbose=False)
