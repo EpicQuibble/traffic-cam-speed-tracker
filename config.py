@@ -21,7 +21,7 @@ PROCESS_EVERY_N_FRAMES_BGSUB = 4
 
 TARGET_FPS = 30 #NEED TO GET FPS HIGHER
 
-SHOW_DEBUG_GRID = True  # Set to True to see a coordinate grid
+SHOW_DEBUG_GRID = False  # Set to True to see a coordinate grid
 
 # We define polygons (zones) to match the road's perspective.
 # These are (x, y) pairs from the top-left corner.

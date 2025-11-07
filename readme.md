@@ -1,24 +1,46 @@
-Traffic Speed Estimator
+# Traffic Speed Estimator
 
-Goal: Watch a live traffic camera and estimate vehicle speeds.
+A Python application to watch a live traffic camera and estimate vehicle speeds using object detection.
 
-main.py: Runs the main application loop.
+HOW TO USE : 
 
-config.py: Holds all settings (URL, zones, distance).
+```
+pip install opencv-python numpy ultralytics
 
-video_stream.py: Connects to and reads the video stream.
+py main.py
+```
 
-detection.py: Detects and tracks vehicles.
+## File Structure
 
-ui.py: Draws the dots and speed numbers on the video.
+main: Runs the main application loop.
 
-Usage: Install with pip install opencv-python numpy ultralytics and run with python main.py.
+config: Holds all settings (camera URL, zones, distance configuration).
 
+video stream: Connects to and reads the video stream.
 
-TODO: 
-* I need to fix the speed calculation its quite wrong, the distance is probably the issue. 
-* Need to improve detection
-* describe the center divider, and ensure the split is done for the two lanes of traffic.
-* improve FPS and stuttering, could be my laptop could be the code!
+detection: Detects and tracks vehicles (using Ultralytics YOLO).
 
+ui: Draws detection boxes, tracking dots, and speed estimates on the video feed.
 
+## To-Do / Future Improvements
+
+speed calculation; the distance parameter is wrong
+
+fix detection and tracking stability to reduce dropped tracks
+
+define the center divider and separate tracking for each direction of traffic
+
+improve FPS and reduce stuttering -> could be my laptop
+
+add data collection --> count cars in this stretch, find popular times, find average speed etc. 
+
+## Why ?
+
+To apply computer vision and object tracking techniques. 
+
+## Demo Screenshot
+![Demo image](image.png "Demo image")
+
+as you can see there are some problems but that will change in the future!
+
+Thanks for reading!
