@@ -34,7 +34,7 @@ improve FPS and reduce stuttering -> could be my laptop
 
 add data collection --> count cars in this stretch, find popular times, find average speed etc. 
 
-## Why ?
+## Why?
 
 To apply computer vision and object tracking techniques. 
 
